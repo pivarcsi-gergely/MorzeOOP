@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Main {
     public static HashMap<String, String> morzeAbcReversed;
     public static HashMap<String, String> morzeAbc;
+    public static HashMap<String, String> morzeIdezetek;
     public static String searchKar;
 
     public static void main(String[] args) {
@@ -20,6 +21,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         searchKar = sc.nextLine();
         System.out.println("A " + searchKar + " karakter morze kódja: " + morzeAbc.get(searchKar));
+        BeolvasIdezet();
     }
 
     public static void BeolvasABC() {
@@ -31,7 +33,6 @@ public class Main {
             String[] szavak = br.readLine().split(";");
             String sor = br.readLine();
             while (sor != null){
-
                 String[] st = sor.split("\\t", -1);
                 String betu = st[0];
                 String morzeJel = st[1];
@@ -49,6 +50,25 @@ public class Main {
     public static void KiirABC() {
         for (Map.Entry<String, String> entry : morzeAbc.entrySet()) {
             System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+    }
+
+    public static void BeolvasIdezet() {
+        morzeIdezetek = new HashMap<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("morze.txt"));
+            String sor = br.readLine();
+            while (sor != null){
+                String[] st = sor.split("\\t", -1);
+                String betu = st[0];
+                String morzeJel = st[1];
+                morzeIdezetek.put(betu, morzeJel);
+                sor = br.readLine();
+            }
+            br.close();
+        }
+        catch (IOException e){
+            e.getMessage();
         }
     }
 }
