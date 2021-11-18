@@ -5,14 +5,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
     public static HashMap<String, String> morzeAbcReversed;
     public static HashMap<String, String> morzeAbc;
+    public static String searchKar;
 
     public static void main(String[] args) {
         BeolvasABC();
         KiirABC();
+        System.out.println("3. feladat: A morze abc " + morzeAbc.size() + " db karakter kódját tartalmazza.");
+        System.out.print("4. feladat: Kérek egy karaktert: ");
+        Scanner sc = new Scanner(System.in);
+        searchKar = sc.nextLine();
+        System.out.println("A " + searchKar + " karakter morze kódja: " + morzeAbc.get(searchKar));
     }
 
     public static void BeolvasABC() {
@@ -39,7 +46,7 @@ public class Main {
         }
     }
 
-    private static void KiirABC() {
+    public static void KiirABC() {
         for (Map.Entry<String, String> entry : morzeAbc.entrySet()) {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
