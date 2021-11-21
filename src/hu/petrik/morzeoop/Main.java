@@ -11,6 +11,7 @@ public class Main {
     public static HashMap<String, String> morzeAbcReversed;
     public static HashMap<String, String> morzeAbc;
     public static HashMap<String, String> morzeIdezetek;
+    public static HashMap<String, String> kodoltMorzeIdezetek;
     public static String searchKar;
 
     public static void main(String[] args) {
@@ -19,6 +20,7 @@ public class Main {
         System.out.println("3. feladat: A morze abc " + morzeAbc.size() + " db karakter kódját tartalmazza.");
         bekertKarMorzekodja();
         BeolvasIdezet();
+        System.out.println("7. feladat: Az első idézet szerzője: " + MorzeToSzoveg(".-   .-.   ..   ...   --..   -   ---   -   .   .-..   ..-..   ...   --.."));
     }
 
     public static void BeolvasABC() {
@@ -68,10 +70,10 @@ public class Main {
             BufferedReader br = new BufferedReader(new FileReader("morze.txt"));
             String sor = br.readLine();
             while (sor != null){
-                String[] st = sor.split("\\t", -1);
-                String betu = st[0];
-                String morzeJel = st[1];
-                morzeIdezetek.put(betu, morzeJel);
+                String[] st = sor.split(";", -1);
+                String szerzo = st[0];
+                String szoveg = st[1];
+                morzeIdezetek.put(szerzo, szoveg);
                 sor = br.readLine();
             }
             br.close();
@@ -80,4 +82,14 @@ public class Main {
             e.getMessage();
         }
     }
+
+    public static String MorzeToSzoveg(String kodoltSzoveg) {
+        String[] st = kodoltSzoveg.split("   ", -1);
+        kodoltSzoveg = "";
+        for (int i = 0; i < st.length; i++) {
+            kodoltSzoveg += morzeAbcReversed.get(st[i]);
+        }
+        return kodoltSzoveg;
+    }
+
 }
