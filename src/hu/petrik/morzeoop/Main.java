@@ -17,10 +17,7 @@ public class Main {
         BeolvasABC();
         KiirABC();
         System.out.println("3. feladat: A morze abc " + morzeAbc.size() + " db karakter kódját tartalmazza.");
-        System.out.print("4. feladat: Kérek egy karaktert: ");
-        Scanner sc = new Scanner(System.in);
-        searchKar = sc.nextLine();
-        System.out.println("A " + searchKar + " karakter morze kódja: " + morzeAbc.get(searchKar));
+        bekertKarMorzekodja();
         BeolvasIdezet();
     }
 
@@ -50,6 +47,18 @@ public class Main {
     public static void KiirABC() {
         for (Map.Entry<String, String> entry : morzeAbc.entrySet()) {
             System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+    }
+
+    public static void bekertKarMorzekodja() {
+        System.out.print("4. feladat: Kérek egy karaktert: ");
+        Scanner sc = new Scanner(System.in);
+        searchKar = sc.nextLine();
+        if (morzeAbc.containsKey(searchKar)){
+            System.out.println("A " + searchKar + " karakter morze kódja: " + morzeAbc.get(searchKar));
+        }
+        else {
+            System.out.println("Nem található a kódtárban ilyen karakter!");
         }
     }
 
